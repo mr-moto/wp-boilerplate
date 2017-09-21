@@ -39,6 +39,17 @@ function dummy_theme_name_setup() {
 endif; // dummy_theme_name_setup
 add_action( 'after_setup_theme', 'dummy_theme_name_setup' );
 
+
+//Page Slug Body Class
+function add_slug_body_class( $classes ) {
+	global $post;
+	if ( isset( $post ) ) {
+	$classes[] = $post->post_type . '-' . $post->post_name;
+	}
+	return $classes;
+	}
+	add_filter( 'body_class', 'add_slug_body_class' );
+
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
  *
